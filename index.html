@@ -511,11 +511,13 @@ const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersec
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 function toggleProject(header){
+  const scrollY = window.scrollY;
   const body=header.nextElementSibling;
   const isOpen=body.classList.contains('open');
   document.querySelectorAll('.project-body.open').forEach(b=>b.classList.remove('open'));
   document.querySelectorAll('.project-header.open').forEach(h=>h.classList.remove('open'));
   if(!isOpen){body.classList.add('open');header.classList.add('open');}
+  window.scrollTo({top: scrollY, behavior: 'instant'});
 }
 
 function openLightbox(src){document.getElementById('lbImg').src=src;document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden';}
